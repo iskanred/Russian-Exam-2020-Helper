@@ -1,0 +1,39 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight">
+
+    </style>
+
+    <!-- Text Appearance -->
+    <style name="TextAppearance">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">58sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:fontFamily">@font/oswald</item>
+    </style>
+
+    <style name="CountDownText" parent="TextAppearance">
+        <item name="android:textSize">108sp</item>
+    </style>
+
+    <style name="ScoreText" parent="TextAppearance">
+        <item name="android:textSize">24sp</item>
+        <item name="android:text">@string/score_header_text</item>
+    </style>
+
+    <style name="AnswerOptionText" parent="TextAppearance">
+        <item name="android:textSize">25sp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingEnd">10dp</item>
+    </style>
+    <!--_________________-->
+
+    <!-- Buttons -->
+    <style name="ButtonChoosing" parent="TextAppearance">
+        <item name="android:textAllCaps">true</item>
+    </style>
+    <!--_________-->
+
+</resources>

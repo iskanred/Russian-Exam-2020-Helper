@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:columnCount="2"
+    tools:context=".stresses.StressesActivity">
+
+    <include
+        layout="@layout/answer_options_card_layout"
+        android:id="@+id/answer_option1_card"
+        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="5dp"/>
+
+    <include
+        layout="@layout/answer_options_card_layout"
+        android:id="@+id/answer_option2_card"
+        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="5dp"/>
+
+    <include
+        layout="@layout/answer_options_card_layout"
+        android:id="@+id/answer_option3_card"
+        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"/>
+
+    <include
+        layout="@layout/answer_options_card_layout"
+        android:id="@+id/answer_option4_card"
+        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"/>
+
+    <include
+        layout="@layout/answer_options_card_layout"
+        android:id="@+id/answer_option5_card"
+        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="16dp"/>
+
+    <include
+        layout="@layout/answer_options_card_layout"
+        android:id="@+id/answer_option6_card"
+        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="16dp"/>
+
+</GridLayout>

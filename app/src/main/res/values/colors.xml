@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ColorGreenRightAnswer">#25BE25</color>
+    <color name="ColorRedWrongAnswer">#BE2525</color>
+</resources>
