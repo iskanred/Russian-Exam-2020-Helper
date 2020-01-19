@@ -4,10 +4,10 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.card.MaterialCardView;
 import com.iskandev.examrus.ExamActivityTemplate;
 import com.iskandev.examrus.R;
 
@@ -15,12 +15,12 @@ import java.util.Locale;
 
 public class StressesActivity extends ExamActivityTemplate {
 
-    private final long SHOWING_TIME = 1200; // milliseconds
+    private final long SHOWING_TIME = 1400; // milliseconds
     private final String LOG_TAG = "log_tag";
 
     private TextView quizWordText;
     private TextView scoreText;
-    private MaterialCardView[] answerOptionsCards;
+    private Button[] answerOptionsCards;
 
     private WordStress currentWordStress;
     private int score = 0;
@@ -55,7 +55,7 @@ public class StressesActivity extends ExamActivityTemplate {
         };
 
         // just sets onClickListener to each optionCard
-        for (MaterialCardView answerOptionsCard : answerOptionsCards)
+        for (Button answerOptionsCard : answerOptionsCards)
             answerOptionsCard.setOnClickListener(onClickListener);
 
         runNextTask();
@@ -81,9 +81,8 @@ public class StressesActivity extends ExamActivityTemplate {
 
     private void setOptionsCardsDefaultState() {
         setOptionsCardsEnabled(true);
-        for (MaterialCardView answerOptionCard : answerOptionsCards) {
-            answerOptionCard.setBackgroundColor(getResources().getColor
-                    (com.google.android.material.R.color.cardview_dark_background, getTheme()));
+        for (Button answerOptionCard : answerOptionsCards) {
+            answerOptionCard.setBackground(getResources().getDrawable(R.drawable.button_default_state, getTheme()));
         }
     }
 
@@ -101,31 +100,27 @@ public class StressesActivity extends ExamActivityTemplate {
     }
 
 
-
     private void displaySuccess(final int selectedOptionIndex) {
-        answerOptionsCards[selectedOptionIndex].setBackgroundColor(getResources().getColor(R.color.ColorGreenRightAnswer, getTheme()));
+        answerOptionsCards[selectedOptionIndex].setBackground(getResources().getDrawable(R.drawable.button_green_state, getTheme()));
         ++score;
     }
 
 
-
     private void displayFailure(final int selectedOptionIndex) {
-        answerOptionsCards[selectedOptionIndex].setBackgroundColor(getResources().getColor(R.color.ColorRedWrongAnswer, getTheme()));
-        answerOptionsCards[currentWordStress.getRightOptionIndex()].setBackgroundColor(getResources().getColor(R.color.ColorGreenRightAnswer, getTheme()));
+        answerOptionsCards[selectedOptionIndex].setBackground(getResources().getDrawable(R.drawable.button_red_state, getTheme()));
+        answerOptionsCards[currentWordStress.getRightOptionIndex()].setBackground(getResources().getDrawable(R.drawable.button_green_state, getTheme()));
         score = 0;
     }
 
 
-
     private void setScoreText() {
-        scoreText.setText(String.format(Locale.getDefault(), "%s %d",
-                getString(R.string.score_header_text), score));
+        scoreText.setText(String.format(Locale.getDefault(),
+                "%s %d", getString(R.string.score_header_text), score));
     }
 
 
-
     private void setOptionsCardsEnabled(final boolean enabledState) {
-        for (MaterialCardView answerOptionCard : answerOptionsCards) {
+        for (Button answerOptionCard : answerOptionsCards) {
             answerOptionCard.setEnabled(enabledState);
         }
     }
@@ -136,12 +131,10 @@ public class StressesActivity extends ExamActivityTemplate {
     }
 
 
-
     private void displayNextTaskData() {
         quizWordText.setText(currentWordStress.getWordLowerCase());
         fillAnswerOptions();
     }
-
 
 
     private int getSelectedAnswerOptionCardIndex(final int selectedOptionId) {
@@ -154,20 +147,16 @@ public class StressesActivity extends ExamActivityTemplate {
     }
 
 
-
     private void fillAnswerOptions() {
         for (int optionPos = 0; optionPos < answerOptionsCards.length; ++optionPos) {
-            TextView optionText = answerOptionsCards[optionPos].findViewById(R.id.option_text);
-
             if (optionPos < currentWordStress.getWordOptions().size())
-                optionText.setText(currentWordStress.getWordOptions().get(optionPos));
+                answerOptionsCards[optionPos].setText(currentWordStress.getWordOptions().get(optionPos));
             else {
-                optionText.setText("");
+                answerOptionsCards[optionPos].setText("");
                 answerOptionsCards[optionPos].setEnabled(false);
             }
         }
     }
-
 
 
     @Override
@@ -175,13 +164,13 @@ public class StressesActivity extends ExamActivityTemplate {
         quizWordText = findViewById(R.id.quiz_word);
         scoreText = findViewById(R.id.score_text);
 
-        answerOptionsCards = new MaterialCardView[]{
-                findViewById(R.id.answer_options_cards_table).findViewById(R.id.answer_option1_card),
-                findViewById(R.id.answer_options_cards_table).findViewById(R.id.answer_option2_card),
-                findViewById(R.id.answer_options_cards_table).findViewById(R.id.answer_option3_card),
-                findViewById(R.id.answer_options_cards_table).findViewById(R.id.answer_option4_card),
-                findViewById(R.id.answer_options_cards_table).findViewById(R.id.answer_option5_card),
-                findViewById(R.id.answer_options_cards_table).findViewById(R.id.answer_option6_card)
+        answerOptionsCards = new Button[]{
+                findViewById(R.id.answer_options_buttons_table).findViewById(R.id.answer_option1_button),
+                findViewById(R.id.answer_options_buttons_table).findViewById(R.id.answer_option2_button),
+                findViewById(R.id.answer_options_buttons_table).findViewById(R.id.answer_option3_button),
+                findViewById(R.id.answer_options_buttons_table).findViewById(R.id.answer_option4_button),
+                findViewById(R.id.answer_options_buttons_table).findViewById(R.id.answer_option5_button),
+                findViewById(R.id.answer_options_buttons_table).findViewById(R.id.answer_option6_button)
         };
     }
 }

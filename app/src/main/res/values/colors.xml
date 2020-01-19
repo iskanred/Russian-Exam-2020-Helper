@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="ColorGreenRightAnswer">#25BE25</color>
-    <color name="ColorRedWrongAnswer">#BE2525</color>
+    <color name="colorButtonGreen">#25BE25</color>
+    <color name="colorButtonRed">#BE2525</color>
+    <color name="colorButtonDefault">#FF5A595B</color>
+    <color name="colorRippleEffect">#33FFFFFF</color>
 </resources>

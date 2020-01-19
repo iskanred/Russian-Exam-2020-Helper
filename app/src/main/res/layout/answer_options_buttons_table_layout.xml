@@ -6,76 +6,82 @@
     android:columnCount="2"
     tools:context=".stresses.StressesActivity">
 
-    <include
-        layout="@layout/answer_options_card_layout"
-        android:id="@+id/answer_option1_card"
+    <Button
+        android:id="@+id/answer_option1_button"
         android:layout_height="0dp"
         android:layout_width="0dp"
+        style="@style/AnswerOptionButton"
         android:layout_columnWeight="1"
         android:layout_rowWeight="1"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="5dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="5dp"/>
+        android:layout_marginBottom="5dp"
+        tools:text="опломбировать"/>
 
-    <include
-        layout="@layout/answer_options_card_layout"
-        android:id="@+id/answer_option2_card"
+    <Button
+        android:id="@+id/answer_option2_button"
         android:layout_height="0dp"
         android:layout_width="0dp"
+        style="@style/AnswerOptionButton"
         android:layout_columnWeight="1"
         android:layout_rowWeight="1"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="5dp"/>
+        android:layout_marginBottom="5dp"
+        tools:text="опломбировать"/>
 
-    <include
-        layout="@layout/answer_options_card_layout"
-        android:id="@+id/answer_option3_card"
+    <Button
+        android:id="@+id/answer_option3_button"
         android:layout_height="0dp"
         android:layout_width="0dp"
+        style="@style/AnswerOptionButton"
         android:layout_columnWeight="1"
         android:layout_rowWeight="1"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="5dp"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"/>
+        android:layout_marginBottom="5dp"
+        tools:text="опломбировать"/>
 
-    <include
-        layout="@layout/answer_options_card_layout"
-        android:id="@+id/answer_option4_card"
+    <Button
+        android:id="@+id/answer_option4_button"
         android:layout_height="0dp"
         android:layout_width="0dp"
+        style="@style/AnswerOptionButton"
         android:layout_columnWeight="1"
         android:layout_rowWeight="1"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"/>
+        android:layout_marginBottom="5dp"
+        tools:text="опломбировать"/>
 
-    <include
-        layout="@layout/answer_options_card_layout"
-        android:id="@+id/answer_option5_card"
+    <Button
+        android:id="@+id/answer_option5_button"
         android:layout_height="0dp"
         android:layout_width="0dp"
+        style="@style/AnswerOptionButton"
         android:layout_columnWeight="1"
         android:layout_rowWeight="1"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="5dp"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="16dp"
+        tools:text="опломбировать"/>
 
-    <include
-        layout="@layout/answer_options_card_layout"
-        android:id="@+id/answer_option6_card"
+    <Button
+        android:id="@+id/answer_option6_button"
         android:layout_height="0dp"
         android:layout_width="0dp"
+        style="@style/AnswerOptionButton"
         android:layout_columnWeight="1"
         android:layout_rowWeight="1"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="16dp"
+        tools:text="опломбировать"/>
 
 </GridLayout>

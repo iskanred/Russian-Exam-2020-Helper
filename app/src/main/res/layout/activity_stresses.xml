@@ -28,13 +28,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1"
+        app:layout_constraintVertical_bias="0.07"
         tools:text="опломбировать"
         tools:textColor="@android:color/black"/>
 
     <include
-        layout="@layout/answer_options_cards_table_layout"
-        android:id="@+id/answer_options_cards_table"
+        layout="@layout/answer_options_buttons_table_layout"
+        android:id="@+id/answer_options_buttons_table"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintHeight_percent="1"
