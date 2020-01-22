@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.Collections;
 
-final class WordStress {
+public final class WordStress {
 
     private static final char[] VOWELS = new char[]{'а', 'е', 'и', 'о', 'у', 'ы', 'э', 'ю', 'я', 'ё'};
 
@@ -18,7 +18,7 @@ final class WordStress {
     private ArrayList<String> wordOptions;
 
 
-    WordStress (@NonNull final String word, final int rightStressNumber) {
+    public WordStress (@NonNull final String word, final int rightStressNumber) {
         if (word.isEmpty() || rightStressNumber == 0)
             throw new IllegalArgumentException("Empty word or zero right stress num");
 

@@ -17,7 +17,7 @@
         android:layout_marginEnd="5dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="5dp"
-        tools:text="опломбировать"/>
+        tools:text="вероисповедание"/>
 
     <Button
         android:id="@+id/answer_option2_button"
@@ -30,7 +30,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="5dp"
-        tools:text="опломбировать"/>
+        tools:text="вероисповедание"/>
 
     <Button
         android:id="@+id/answer_option3_button"
@@ -43,7 +43,7 @@
         android:layout_marginEnd="5dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        tools:text="опломбировать"/>
+        tools:text="вероисповедание"/>
 
     <Button
         android:id="@+id/answer_option4_button"
@@ -56,7 +56,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        tools:text="опломбировать"/>
+        tools:text="вероисповедание"/>
 
     <Button
         android:id="@+id/answer_option5_button"
@@ -69,7 +69,7 @@
         android:layout_marginEnd="5dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="16dp"
-        tools:text="опломбировать"/>
+        tools:text="вероисповедание"/>
 
     <Button
         android:id="@+id/answer_option6_button"
@@ -82,6 +82,6 @@
         android:layout_marginEnd="16dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="16dp"
-        tools:text="опломбировать"/>
+        tools:text="вероисповедание"/>
 
 </GridLayout>

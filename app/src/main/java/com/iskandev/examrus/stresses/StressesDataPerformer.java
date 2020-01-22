@@ -1,19 +1,24 @@
 package com.iskandev.examrus.stresses;
 
+import android.content.Context;
+
+
 import androidx.annotation.Nullable;
+
+import com.iskandev.examrus.DatabaseHelper;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
 final class StressesDataPerformer {
 
-    final static int WORDS_AMOUNT = 5;
+    final static int WORDS_AMOUNT = 24;
 
     private ArrayList<WordStress> wordStressesOrdered;
     private ArrayList<WordStress> wordStressesShuffled;
 
-    StressesDataPerformer() {
-        extractWordStressesFromDB();
+    StressesDataPerformer(final Context context) {
+        extractWordStressesFromDB(context);
         shuffleWordStresses();
     }
 
@@ -26,13 +31,11 @@ final class StressesDataPerformer {
         shuffleWordStresses();
     }
 
-    private void extractWordStressesFromDB() {
-        wordStressesOrdered = new ArrayList<>();
-        wordStressesOrdered.add(new WordStress("обвзонить", 3));
-        wordStressesOrdered.add(new WordStress("обвзонит", 3));
-        wordStressesOrdered.add(new WordStress("облегчить", 3));
-        wordStressesOrdered.add(new WordStress("облегчит", 3));
-        wordStressesOrdered.add(new WordStress("опломбировать", 5));
+    private void extractWordStressesFromDB(final Context context) {
+        final DatabaseHelper databaseHelper = new DatabaseHelper(context);
+        databaseHelper.createDataBase();
+        databaseHelper.openDataBase();
+        wordStressesOrdered = databaseHelper.getWordStresses();
     }
 
     private void shuffleWordStresses() {

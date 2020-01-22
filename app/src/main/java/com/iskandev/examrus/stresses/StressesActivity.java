@@ -9,24 +9,24 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.iskandev.examrus.ExamActivityTemplate;
+import com.iskandev.examrus.LogTag;
 import com.iskandev.examrus.R;
 
 import java.util.Locale;
 
 public class StressesActivity extends ExamActivityTemplate {
 
-    private final long SHOWING_TIME = 1400; // milliseconds
-    private final String LOG_TAG = "log_tag";
-
-    private TextView quizWordText;
-    private TextView scoreText;
-    private Button[] answerOptionsCards;
+    private final static long SHOWING_TIME = 1000; // milliseconds
+    private StressesDataPerformer stressesDataPerformer;
 
     private WordStress currentWordStress;
     private int score = 0;
     private int sessionTaskNumber;
 
-    final StressesDataPerformer stressesDataPerformer = new StressesDataPerformer();
+    private TextView quizWordText;
+    private TextView scoreText;
+    private Button[] answerOptionsCards;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +38,11 @@ public class StressesActivity extends ExamActivityTemplate {
 
     @Override
     protected void runExam() {
+
+        stressesDataPerformer = new StressesDataPerformer(getApplicationContext());
+
         final OnClickListener onClickListener = (view) -> {
-            Log.i(LOG_TAG, "answer option was clicked");
+            Log.i(LogTag.INFO.toString(), "answer option was clicked");
             // CountDown needs to show if whether the selected answer option is right
             new CountDownTimer(SHOWING_TIME, SHOWING_TIME) {
                 @Override
@@ -59,13 +62,13 @@ public class StressesActivity extends ExamActivityTemplate {
             answerOptionsCard.setOnClickListener(onClickListener);
 
         runNextTask();
-        setScoreText();
+        updateScoreText();
     }
 
 
 
     private void runNextTask() {
-        Log.i(LOG_TAG, "next task was run");
+        Log.i(LogTag.INFO.toString(), "next task was run");
 
         if (sessionTaskNumber >= StressesDataPerformer.WORDS_AMOUNT) {
             Toast.makeText(getApplicationContext(), "!", Toast.LENGTH_SHORT).show();
@@ -73,13 +76,13 @@ public class StressesActivity extends ExamActivityTemplate {
             sessionTaskNumber %= StressesDataPerformer.WORDS_AMOUNT;
         }
 
-        setOptionsCardsDefaultState();
+        setOptionsButtonsDefaultState();
         getNextTaskData();
         displayNextTaskData();
     }
 
 
-    private void setOptionsCardsDefaultState() {
+    private void setOptionsButtonsDefaultState() {
         setOptionsCardsEnabled(true);
         for (Button answerOptionCard : answerOptionsCards) {
             answerOptionCard.setBackground(getResources().getDrawable(R.drawable.button_default_state, getTheme()));
@@ -95,8 +98,8 @@ public class StressesActivity extends ExamActivityTemplate {
         else
             displayFailure(selectedOptionIndex);
 
-        ++sessionTaskNumber;
-        setScoreText();
+        ++sessionTaskNumber; // next task in session
+        updateScoreText();
     }
 
 
@@ -113,7 +116,7 @@ public class StressesActivity extends ExamActivityTemplate {
     }
 
 
-    private void setScoreText() {
+    private void updateScoreText() {
         scoreText.setText(String.format(Locale.getDefault(),
                 "%s %d", getString(R.string.score_header_text), score));
     }
