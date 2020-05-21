@@ -38,11 +38,17 @@ public final class WordStress {
         for (int letterPos = 0; letterPos < this.wordLowerCase.length(); ++letterPos) {
             final char letter = this.wordLowerCase.charAt(letterPos);
 
+            if (letter == '(' || letter == ' ')
+                break;
+
             if (isLetterVowel(letter)) {
                 this.wordOptions.add(getWordVowelUpperCase(letterPos));
 
                 if (this.wordOptions.size() == rightStressNumber)
                     rightWordOption = this.wordOptions.get(this.wordOptions.size() - 1);
+
+                if (this.wordOptions.size() > 6)
+                    break;
             }
         }
 

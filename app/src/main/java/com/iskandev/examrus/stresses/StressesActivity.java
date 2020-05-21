@@ -1,7 +1,7 @@
 package com.iskandev.examrus.stresses;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -13,11 +13,13 @@ import com.iskandev.examrus.LogTag;
 import com.iskandev.examrus.R;
 
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class StressesActivity extends ExamActivityTemplate {
 
-    private final static long SHOWING_TIME = 1000; // milliseconds
+    private final static long SHOWING_TIME = 1000; // time to show user correct answer
     private StressesDataPerformer stressesDataPerformer;
+    private FreezeTask freezeTask;
 
     private WordStress currentWordStress;
     private int score = 0;
@@ -37,24 +39,47 @@ public class StressesActivity extends ExamActivityTemplate {
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (freezeTask != null) {
+            freezeTask.cancel(true);
+        }
+        Log.i(LogTag.INFO.toString(), "StressesActivity was destroyed, its processes was finished");
+    }
+
+    /**
+     * Freeze answer option selection buttons to show user correct answer
+     */
+    private final class FreezeTask extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try {
+                TimeUnit.MILLISECONDS.sleep(SHOWING_TIME);
+            } catch (InterruptedException ie) {
+                Log.e(LogTag.ERROR.toString(), "Interrupted Exception of TimeUnit in AsyncTask");
+                ie.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            Log.i(LogTag.INFO.toString(), "freezing was stopped");
+            runNextTask();
+        }
+    }
+
+    @Override
     protected void runExam() {
 
         stressesDataPerformer = new StressesDataPerformer(getApplicationContext());
 
         final OnClickListener onClickListener = (view) -> {
             Log.i(LogTag.INFO.toString(), "answer option was clicked");
-            // CountDown needs to show if whether the selected answer option is right
-            new CountDownTimer(SHOWING_TIME, SHOWING_TIME) {
-                @Override
-                public void onTick(long millisUntilFinished) {
-                    finishCurrentTask(getSelectedAnswerOptionCardIndex(view.getId()));
-                }
-
-                @Override
-                public void onFinish() {
-                    runNextTask();
-                }
-            }.start();
+            finishCurrentTask(getSelectedAnswerOptionCardIndex(view.getId()));
+            freezeTask = new FreezeTask();
+            freezeTask.execute();
         };
 
         // just sets onClickListener to each optionCard
@@ -64,8 +89,6 @@ public class StressesActivity extends ExamActivityTemplate {
         runNextTask();
         updateScoreText();
     }
-
-
 
     private void runNextTask() {
         Log.i(LogTag.INFO.toString(), "next task was run");
@@ -100,6 +123,8 @@ public class StressesActivity extends ExamActivityTemplate {
 
         ++sessionTaskNumber; // next task in session
         updateScoreText();
+
+        Log.i(LogTag.INFO.toString(), "current task was finished");
     }
 
 
@@ -160,7 +185,6 @@ public class StressesActivity extends ExamActivityTemplate {
             }
         }
     }
-
 
     @Override
     protected void loadViewElements() {

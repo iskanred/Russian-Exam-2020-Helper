@@ -12,7 +12,7 @@ import java.util.Collections;
 
 final class StressesDataPerformer {
 
-    final static int WORDS_AMOUNT = 24;
+    final static int WORDS_AMOUNT = 161;
 
     private ArrayList<WordStress> wordStressesOrdered;
     private ArrayList<WordStress> wordStressesShuffled;

@@ -12,12 +12,13 @@ public abstract class ExamActivityTemplate extends AppCompatActivity {
 
     final int SHOWING_TIME = 1650;
     final int SHOWING_INTERVAL = 550;
+    private CountDownTimer countDownTimer;
 
     protected void runActivity(final int newViewId) {
         setContentView(R.layout.countdown_layout);
         final TextView countDownText = findViewById(R.id.countdown_text);
 
-        new CountDownTimer(SHOWING_TIME, SHOWING_INTERVAL) {
+        countDownTimer = new CountDownTimer(SHOWING_TIME, SHOWING_INTERVAL) {
             @Override
             public void onTick(long millisUntilFinished) {
                 countDownText.setText(String.format(Locale.getDefault(),
@@ -30,7 +31,14 @@ public abstract class ExamActivityTemplate extends AppCompatActivity {
                 loadViewElements();
                 runExam();
             }
-        }.start();
+        };
+        countDownTimer.start();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        countDownTimer.cancel();
     }
 
     protected abstract void runExam();
