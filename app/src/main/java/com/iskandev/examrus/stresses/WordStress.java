@@ -42,17 +42,19 @@ public final class WordStress {
                 break;
 
             if (isLetterVowel(letter)) {
-                this.wordOptions.add(getWordVowelUpperCase(letterPos));
+                String wordUpperCurrentVowel = getWordVowelUpperCase(letterPos);
+
+                this.wordOptions.add(wordUpperCurrentVowel);
 
                 if (this.wordOptions.size() == rightStressNumber)
-                    rightWordOption = this.wordOptions.get(this.wordOptions.size() - 1);
+                    rightWordOption = wordUpperCurrentVowel;
 
-                if (this.wordOptions.size() > 6)
+                if (this.wordOptions.size() == 6) // only for word "вероисповедание"
                     break;
             }
         }
 
-        /* Shuffling and getting index of right Words Option in array of all options x*/
+        /* Shuffling and getting index of right Words Option in array of all options*/
         shuffleWordOptions(rightWordOption);
     }
 
@@ -81,7 +83,7 @@ public final class WordStress {
         return new ArrayList<>(wordOptions);
     }
 
-    int getRightOptionIndex() {
+    int getCorrectOptionIndex() {
         return rightOptionIndex;
     }
 }

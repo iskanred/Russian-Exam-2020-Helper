@@ -45,13 +45,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(final SQLiteDatabase db, final int oldVersion, final int newVersion) {}
 
-    public void createDataBase() {
+    private void createDataBase() {
         if (!DB_FILE.exists()) {
             this.getReadableDatabase();
+            Log.i(LogTag.INFO.toString(), "Database created");
 
             try {
                 copyDataBase();
             } catch (IOException e) {
+                e.printStackTrace();
                 Log.e(LogTag.ERROR.toString(), "Error copying database", e);
                 throw new Error("Error copying database");
             }
@@ -75,6 +77,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void openDataBase() throws SQLException {
+        createDataBase();
         final String path = DB_FILE.getAbsolutePath() + DB_NAME;
         dataBase = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READONLY);
     }
@@ -104,6 +107,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         } else {
             final Error error = new Error("stresses table is empty");
+            error.printStackTrace();
             Log.e(LogTag.ERROR.toString(), "stresses table is empty", error);
         }
 

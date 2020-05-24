@@ -11,7 +11,12 @@ public class ParonymsActivity extends ExamActivityTemplate {
     }
 
     @Override
-    protected void runExam() {
+    protected void startQuiz() {
+
+    }
+
+    @Override
+    protected void finishQuiz() {
 
     }
 

@@ -29,7 +29,7 @@ public abstract class ExamActivityTemplate extends AppCompatActivity {
             public void onFinish() {
                 setContentView(newViewId);
                 loadViewElements();
-                runExam();
+                startQuiz();
             }
         };
         countDownTimer.start();
@@ -41,7 +41,9 @@ public abstract class ExamActivityTemplate extends AppCompatActivity {
         countDownTimer.cancel();
     }
 
-    protected abstract void runExam();
+    protected abstract void finishQuiz();
+
+    protected abstract void startQuiz();
 
     protected abstract void loadViewElements();
 }
