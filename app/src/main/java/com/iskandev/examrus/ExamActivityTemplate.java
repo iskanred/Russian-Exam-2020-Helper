@@ -1,8 +1,11 @@
 package com.iskandev.examrus;
 
 import android.os.CountDownTimer;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -14,6 +17,7 @@ public abstract class ExamActivityTemplate extends AppCompatActivity {
     final int SHOWING_TIME = 1650;
     final int SHOWING_INTERVAL = 550;
     private CountDownTimer countDownTimer;
+    Toolbar toolbar;
 
 
     protected void runActivity(final int activityLayoutId) {
@@ -44,6 +48,20 @@ public abstract class ExamActivityTemplate extends AppCompatActivity {
         countDownTimer.cancel();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_activity_exam, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.action_back) {
+            onBackPressed();
+        }
+        return true;
+    }
+
     protected abstract void finishQuiz();
 
     protected abstract void startQuiz();
@@ -52,7 +70,7 @@ public abstract class ExamActivityTemplate extends AppCompatActivity {
 
 
     private void setToolbar(int activityLayoutId) {
-        Toolbar toolbar = findViewById(R.id.toolbar_activity_exam);
+        toolbar = findViewById(R.id.toolbar_activity_exam);
         TextView toolbarTitle = toolbar.findViewById(R.id.title);
 
         if (activityLayoutId == R.layout.activity_stresses)
