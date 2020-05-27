@@ -7,15 +7,25 @@
     android:layout_height="match_parent"
     tools:context=".stresses.StressesActivity">
 
+    <include layout="@layout/toolbar_exam_layout"
+        android:id="@+id/toolbar_activity_exam"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.0"  />
+
     <TextView
         android:id="@+id/score_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/ScoreText"
+
+        app:layout_constraintTop_toBottomOf="@id/toolbar_activity_exam"
         app:layout_constraintBottom_toTopOf="@+id/quiz_word"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
         tools:text="Счёт: 999"
         tools:textColor="@android:color/black"/>
 
@@ -24,11 +34,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/TextAppearance"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintBottom_toTopOf="@id/answer_options_buttons_table"
+        app:layout_constraintTop_toBottomOf="@id/score_text"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.07"
+        app:layout_constraintEnd_toEndOf="parent"
+
         tools:text="вероисповедание"
         tools:textColor="@android:color/black"/>
 
@@ -37,11 +48,10 @@
         android:id="@+id/answer_options_buttons_table"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="1"
-        app:layout_constraintWidth_percent="1"
+
+        app:layout_constraintTop_toBottomOf="@+id/quiz_word"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/quiz_word" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

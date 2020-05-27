@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import com.iskandev.examrus.ExamActivityTemplate;
 import com.iskandev.examrus.LogTag;
 import com.iskandev.examrus.R;
@@ -29,7 +30,6 @@ public class StressesActivity extends ExamActivityTemplate {
     private TextView quizWordText;
     private TextView scoreText;
     private Button[] answerOptionsCards;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,7 +152,7 @@ public class StressesActivity extends ExamActivityTemplate {
                 answerOptionsCards[optionPos].setText(wordOptions.get(optionPos));
             } else {
                 answerOptionsCards[optionPos].setText("");
-                answerOptionsCards[optionPos].setEnabled(false);
+                answerOptionsCards[optionPos].setClickable(false);
             }
         }
     }
@@ -175,7 +175,7 @@ public class StressesActivity extends ExamActivityTemplate {
         isOptionCardSelected = false;
         for (Button answerOptionCard : answerOptionsCards) {
             answerOptionCard.setBackground(getResources().getDrawable(R.drawable.button_default_state, getTheme()));
-            answerOptionCard.setEnabled(true);
+            answerOptionCard.setClickable(true);
         }
     }
 

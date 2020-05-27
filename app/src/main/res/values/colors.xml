@@ -2,6 +2,7 @@
 <resources>
     <color name="colorButtonGreen">#25BE25</color>
     <color name="colorButtonRed">#BE2525</color>
-    <color name="colorButtonDefault">#FF5A595B</color>
+    <color name="colorButtonDefault">#ff424242</color>
     <color name="colorRippleEffect">#33FFFFFF</color>
+    <color name="colorToolbar">#ff212121</color>
 </resources>

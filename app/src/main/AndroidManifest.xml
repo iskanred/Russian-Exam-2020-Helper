@@ -14,9 +14,11 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".stresses.StressesActivity"
+            android:label=""
             android:screenOrientation="portrait"/>
         <activity
             android:name=".ParonymsActivity"
+            android:label=""
             android:screenOrientation="portrait"/>
         <activity
             android:name=".MainActivity"

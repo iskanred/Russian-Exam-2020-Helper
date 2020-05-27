@@ -5,6 +5,7 @@
 
     </style>
 
+
     <!-- Text Appearance -->
     <style name="TextAppearance" parent="TextAppearance.AppCompat">
         <item name="android:gravity">center</item>
@@ -21,14 +22,22 @@
         <item name="android:textSize">24sp</item>
         <item name="android:text">@string/score_header_text</item>
     </style>
+
+    <style name="ToolbarTitle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:fontFamily">@font/oswald</item>
+    </style>
     <!--_________________-->
+
 
     <!-- Buttons -->
     <style name="ButtonChoosing" parent="TextAppearance">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:background">@drawable/button_default_state</item>
         <item name="android:textAllCaps">true</item>
     </style>
 
     <style name="AnswerOptionButton" parent="TextAppearance">
+        <item name="android:background">@drawable/button_default_state</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:textSize">24sp</item>
         <item name="android:gravity">center</item>

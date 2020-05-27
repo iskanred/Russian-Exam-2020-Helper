@@ -7,16 +7,25 @@
     android:layout_height="match_parent"
     tools:context=".ParonymsActivity">
 
-    <TextView
-        android:id="@+id/word"
-        style="@style/TextAppearance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <include layout="@layout/toolbar_exam_layout"
+        android:id="@+id/toolbar_activity_exam"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1"
-        tools:text="опломбировать"/>
+        app:layout_constraintVertical_bias="0.0"  />
+
+    <TextView
+        android:id="@+id/quiz_word"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TextAppearance"
+
+        app:layout_constraintTop_toBottomOf="@id/toolbar_activity_exam"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        tools:text="вероисповедание"
+        tools:textColor="@android:color/black"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
