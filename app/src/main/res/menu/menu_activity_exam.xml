@@ -3,10 +3,5 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item
-        android:id="@+id/action_back"
-        android:title="@android:string/cancel"
-        android:icon="@drawable/baseline_arrow_back_white_36"
-        app:showAsAction="always|collapseActionView"/>
 
 </menu>

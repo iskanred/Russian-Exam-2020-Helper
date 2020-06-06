@@ -9,7 +9,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.iskandev.examrus.stresses.StressesActivity;
 
-import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar_activity_main);
         setSupportActionBar(toolbar); // sets Toolbar as an ActionBar
-        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 
         final Button btnParonyms = findViewById(R.id.paronyms_button);
         final Button btnStresses = findViewById(R.id.stresses_button);

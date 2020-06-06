@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".ParonymsActivity">
 
-    <include layout="@layout/toolbar_exam_layout"
+    <include layout="@layout/toolbar_basic_layout"
         android:id="@+id/toolbar_activity_exam"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

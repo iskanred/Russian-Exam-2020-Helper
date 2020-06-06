@@ -7,7 +7,6 @@ public class ParonymsActivity extends ExamActivityTemplate {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        runActivity(R.layout.activity_paronyms);
     }
 
     @Override
@@ -22,6 +21,6 @@ public class ParonymsActivity extends ExamActivityTemplate {
 
     @Override
     protected void loadViewElements() {
-
+        super.loadViewElements();
     }
 }

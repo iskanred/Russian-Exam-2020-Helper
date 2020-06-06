@@ -34,8 +34,6 @@ public class StressesActivity extends ExamActivityTemplate {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        runActivity(R.layout.activity_stresses);
-        Log.i(LogTag.INFO.toString(), "Activity ran");
 
         score = 0;
         isOptionCardSelected = false;
@@ -45,9 +43,9 @@ public class StressesActivity extends ExamActivityTemplate {
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         if (freezeTask != null)
             freezeTask.cancel(true);
+        super.onDestroy();
         Log.i(LogTag.INFO.toString(), "StressesActivity was destroyed, its processes was finished");
     }
 
@@ -102,7 +100,7 @@ public class StressesActivity extends ExamActivityTemplate {
     @Override
     protected void finishQuiz() {
         Toast.makeText(getApplicationContext(), "СЕССИЯ ПОВТОРЕНИЯ ВЫПОЛНЕНА!", Toast.LENGTH_LONG).show();
-        onDestroy();
+        finish();
     }
 
 
@@ -182,6 +180,7 @@ public class StressesActivity extends ExamActivityTemplate {
 
     @Override
     protected void loadViewElements() {
+        super.loadViewElements();
         quizWordText = findViewById(R.id.quiz_word);
         scoreText = findViewById(R.id.score_text);
 

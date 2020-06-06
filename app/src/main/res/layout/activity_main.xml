@@ -28,7 +28,7 @@
         <Button
             android:id="@+id/paronyms_button"
             android:text="@string/paromyms_name"
-            style="@style/ButtonChoosing"
+            style="@style/ButtonChoosingExam"
 
             android:layout_width="315dp"
             android:layout_height="125dp"
@@ -37,7 +37,7 @@
         <Button
             android:id="@+id/stresses_button"
             android:text="@string/stresses_name"
-            style="@style/ButtonChoosing"
+            style="@style/ButtonChoosingExam"
 
             android:layout_width="315dp"
             android:layout_height="125dp"

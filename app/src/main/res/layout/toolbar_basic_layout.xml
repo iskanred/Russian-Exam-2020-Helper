@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <androidx.appcompat.widget.Toolbar
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
@@ -9,14 +8,7 @@
     android:layout_height="?attr/actionBarSize"
     android:elevation="4dp"
     android:background="@color/colorToolbar"
-    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        style="@style/ToolbarTitle"
-        tools:text="Русский ЕГЭ"
-        tools:textColor="@android:color/white"/>
+    app:titleTextAppearance="@style/ToolbarTitle"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
 </androidx.appcompat.widget.Toolbar>
