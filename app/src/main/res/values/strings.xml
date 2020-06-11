@@ -2,8 +2,8 @@
     <string name="app_name">Русский ЕГЭ</string>
     <string name="paromyms_name">Паронимы</string>
     <string name="stresses_name">Ударения</string>
-    <string name="score_header_text">Счёт:</string>
     <string name="exit_exam">Вы уверены, что хотите выйти?</string>
     <string name="exit">Выйти</string>
     <string name="cancel">Отмена</string>
+    <string name="zero">0</string>
 </resources>

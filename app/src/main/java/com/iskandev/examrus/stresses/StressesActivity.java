@@ -21,23 +21,19 @@ public class StressesActivity extends ExamActivityTemplate {
 
     private final static long SHOWING_TIME = 1000; // time to show user correct answer
 
-    private StressesDataPerformer stressesDataPerformer;
+    private StressesDataProvider stressesDataProvider;
     private FreezeTask freezeTask;
     private boolean isOptionCardSelected;
 
-    private int score = 0;
-
     private TextView quizWordText;
-    private TextView scoreText;
     private Button[] answerOptionsCards;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        score = 0;
         isOptionCardSelected = false;
-        stressesDataPerformer = new StressesDataPerformer(getApplicationContext());
+        stressesDataProvider = new StressesDataProvider(getApplicationContext());
         Log.i(LogTag.INFO.toString(), "Data performed");
     }
 
@@ -94,53 +90,52 @@ public class StressesActivity extends ExamActivityTemplate {
             answerOptionsCard.setOnClickListener(onClickListener);
 
         startNextTask();
-        updateScoreText();
     }
 
-    @Override
+    @Override // FIXME: 6/11/2020
     protected void finishQuiz() {
         Toast.makeText(getApplicationContext(), "СЕССИЯ ПОВТОРЕНИЯ ВЫПОЛНЕНА!", Toast.LENGTH_LONG).show();
         finish();
     }
 
-
-    private void startNextTask() {
-        Log.i(LogTag.INFO.toString(), "next task was run");
-
+    @Override
+    protected void startNextTask() {
         setOptionsButtonsDefaultState();
         try {
-            stressesDataPerformer.performNextTaskData();
+            stressesDataProvider.performNextTaskData();
         } catch (IndexOutOfBoundsException e) {
             finishQuiz();
         }
-        displayNextTaskData();
+        super.startNextTask();
     }
 
-    private void displayNextTaskData() {
-        quizWordText.setText(stressesDataPerformer.getQuizWord());
-        fillAnswerOptions(stressesDataPerformer.getWordOptions());
+    @Override
+    protected void displayNextTaskData() {
+        quizWordText.setText(stressesDataProvider.getQuizWord());
+        fillAnswerOptions(stressesDataProvider.getWordOptions());
     }
 
-
-    private void finishCurrentTask(final int selectedOptionIndex) {
-        if (selectedOptionIndex == stressesDataPerformer.getCorrectOptionIndex())
+    @Override
+    protected void finishCurrentTask(final int selectedOptionIndex) {
+        if (selectedOptionIndex == stressesDataProvider.getCorrectOptionIndex())
             displaySuccess(selectedOptionIndex);
         else
             displayFailure(selectedOptionIndex);
 
-        updateScoreText();
-        Log.i(LogTag.INFO.toString(), "current task was finished");
+        super.finishCurrentTask(selectedOptionIndex);
     }
 
-    private void displaySuccess(final int selectedOptionIndex) {
+    @Override
+    protected void displaySuccess(final int selectedOptionIndex) {
         answerOptionsCards[selectedOptionIndex].setBackground(getResources().getDrawable(R.drawable.button_green_state, getTheme()));
-        ++score;
+        super.displaySuccess(selectedOptionIndex);
     }
 
-    private void displayFailure(final int selectedOptionIndex) {
+    @Override
+    protected void displayFailure(final int selectedOptionIndex) {
         answerOptionsCards[selectedOptionIndex].setBackground(getResources().getDrawable(R.drawable.button_red_state, getTheme()));
-        answerOptionsCards[stressesDataPerformer.getCorrectOptionIndex()].setBackground(getResources().getDrawable(R.drawable.button_green_state, getTheme()));
-        score = 0;
+        answerOptionsCards[stressesDataProvider.getCorrectOptionIndex()].setBackground(getResources().getDrawable(R.drawable.button_green_state, getTheme()));
+        super.displayFailure(selectedOptionIndex);
     }
 
 
@@ -165,10 +160,6 @@ public class StressesActivity extends ExamActivityTemplate {
         throw new ArrayIndexOutOfBoundsException("Option index out of bounds");
     }
 
-    private void updateScoreText() {
-        scoreText.setText(String.format(Locale.getDefault(), "%s %d", getString(R.string.score_header_text), score));
-    }
-
     private void setOptionsButtonsDefaultState() {
         isOptionCardSelected = false;
         for (Button answerOptionCard : answerOptionsCards) {
@@ -177,12 +168,17 @@ public class StressesActivity extends ExamActivityTemplate {
         }
     }
 
+    @Override
+    protected void setActivityLayout() {
+        setContentView(R.layout.activity_stresses);
+    }
 
     @Override
     protected void loadViewElements() {
         super.loadViewElements();
         quizWordText = findViewById(R.id.quiz_word);
-        scoreText = findViewById(R.id.score_text);
+
+        super.remainingTasksCounterText.setText(String.format(Locale.getDefault(), "%d", stressesDataProvider.getWordStressesCount()));
 
         answerOptionsCards = new Button[]{
                 findViewById(R.id.answer_options_buttons_table).findViewById(R.id.answer_option1_button),

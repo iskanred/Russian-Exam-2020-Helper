@@ -9,7 +9,7 @@ import com.iskandev.examrus.LogTag;
 import java.util.ArrayList;
 import java.util.Collections;
 
-final class StressesDataPerformer {
+final class StressesDataProvider {
 
     private int currentWordIndex;
     private WordStress currentWordStress;
@@ -17,10 +17,14 @@ final class StressesDataPerformer {
     private ArrayList<WordStress> wordStressesOrdered;
     private ArrayList<WordStress> wordStressesShuffled;
 
-    StressesDataPerformer(final Context context) {
+    StressesDataProvider(final Context context) {
         currentWordIndex = 0;
-        extractWordStressesFromDB(context);
+        extractDataFromDatabase(context);
         shuffleWordStresses();
+    }
+
+    int getWordStressesCount() {
+        return wordStressesOrdered.size();
     }
 
     /**
@@ -44,7 +48,7 @@ final class StressesDataPerformer {
         return currentWordStress.getCorrectOptionIndex();
     }
 
-    private void extractWordStressesFromDB(final Context context) {
+    private void extractDataFromDatabase(final Context context) {
         final DatabaseHelper databaseHelper = new DatabaseHelper(context);
         databaseHelper.openDataBase();
         wordStressesOrdered = databaseHelper.getWordStresses();

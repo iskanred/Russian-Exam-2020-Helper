@@ -21,11 +21,11 @@ import java.util.ArrayList;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private final File DB_FILE;
-    private static final String DB_NAME = "words.db";
+    private static final String DB_NAME = "russian_exam_database.db";
     private static final int DB_VERSION = 1;
 
-    private static final String STRESSES_TABLE_NAME = "stresses_words";
-    //private static final String PARONYMS_TABLE_NAME = "paronyms_words";
+    private static final String STRESSES_TABLE_NAME = "stresses";
+    //private static final String PARONYMS_TABLE_NAME = "paronyms";
 
     private static final String STRESSES_TABLE_WORD_COLUMN_NAME = "word";
     private static final String STRESSES_TABLE_STRESS_NUMBER_COLUMN_NAME = "stress_number";
