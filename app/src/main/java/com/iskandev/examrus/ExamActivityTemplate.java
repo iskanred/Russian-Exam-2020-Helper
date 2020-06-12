@@ -118,14 +118,14 @@ public abstract class ExamActivityTemplate extends AppCompatActivity {
         int currentCorrectAnswersCounter = Integer.parseInt(correctAnswersCounterText.getText().toString());
         correctAnswersCounterText.setText(String.format(Locale.getDefault(), "%d", ++currentCorrectAnswersCounter)); // converting Number to String
 
-        Log.i(LogTag.INFO.toString(), "incorrect answer selected");
+        Log.i(LogTag.INFO.toString(), "correct answer selected");
     }
 
     protected void displayFailure(final int selectedOptionIndex) {
         int currentMistakeAnswersCounter = Integer.parseInt(mistakeAnswersCounterText.getText().toString());
         mistakeAnswersCounterText.setText(String.format(Locale.getDefault(), "%d", ++currentMistakeAnswersCounter)); // converting Number to String
 
-        Log.i(LogTag.INFO.toString(), "correct answer selected");
+        Log.i(LogTag.INFO.toString(), "incorrect answer selected");
     }
 
 
