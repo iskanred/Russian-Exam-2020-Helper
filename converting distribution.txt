@@ -1,7 +1,0 @@
-
-4 + 3 + 4 + 4 + 6 + 4 // mostRepetitive = 4
-
-3 + 4 + 6 // mostRepetitive = 3
-
-
-6 3 5 3 6 6 6 6 4 6 6 6 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 // mostRepetitive = 4
