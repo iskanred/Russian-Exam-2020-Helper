@@ -1,8 +1,10 @@
-package com.iskandev.examrus;
+package com.iskandev.examrus.quiz;
 
 import android.os.Bundle;
 
-public class ParonymsActivity extends ExamActivityTemplate {
+import com.iskandev.examrus.R;
+
+public class ParonymsActivity extends QuizActivityTemplate {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

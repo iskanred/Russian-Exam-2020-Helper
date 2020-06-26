@@ -13,11 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".stresses.StressesActivity"
+            android:name=".quiz.StressesActivity"
             android:label="@string/stresses_name"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".ParonymsActivity"
+            android:name=".quiz.ParonymsActivity"
             android:label="@string/paromyms_name"
             android:screenOrientation="portrait"/>
         <activity

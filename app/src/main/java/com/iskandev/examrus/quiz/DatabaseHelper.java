@@ -1,4 +1,4 @@
-package com.iskandev.examrus;
+package com.iskandev.examrus.quiz;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -9,7 +9,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.iskandev.examrus.stresses.WordStress;
+import com.iskandev.examrus.LogTag;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -24,11 +24,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "russian_exam_database.db";
     private static final int DB_VERSION = 1;
 
-    private static final String STRESSES_TABLE_NAME = "stresses_table";
     //private static final String PARONYMS_TABLE_NAME = "paronyms_table";
 
-    private static final String STRESSES_TABLE_WORD_COLUMN_NAME = "word";
-    private static final String STRESSES_TABLE_STRESS_NUMBER_COLUMN_NAME = "stress_number";
+    private static final String STRESSES_TABLE_NAME = "stresses_table";
+    private static final String STRESSES_TABLE_RIGHT_OPTION_COLUMN_NAME = "right_option";
+    private static final String STRESSES_TABLE_OPTION1_COLUMN_NAME = "option1";
+    private static final String STRESSES_TABLE_OPTION2_COLUMN_NAME = "option2";
+    private static final String STRESSES_TABLE_OPTION3_COLUMN_NAME = "option3";
+    private static final String STRESSES_TABLE_OPTION4_COLUMN_NAME = "option4";
+    private static final String STRESSES_TABLE_OPTION5_COLUMN_NAME = "option5";
 
     private SQLiteDatabase dataBase;
     private final Context mContext;
@@ -90,28 +94,43 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     @NonNull
-    public ArrayList<WordStress> getWordStresses() {
+    public ArrayList<QuizTaskData> getStressesData() {
         final Cursor cursor = dataBase.query(STRESSES_TABLE_NAME, null, null, null, null, null, null);
-        final ArrayList<WordStress> wordStresses = new ArrayList<>();
+        final ArrayList<QuizTaskData> stressesData = new ArrayList<>();
 
         if (cursor.moveToFirst()) {
-            final int WORD_COLUMN_INDEX = cursor.getColumnIndex(STRESSES_TABLE_WORD_COLUMN_NAME);
-            final int STRESS_NUMBER_COLUMN_INDEX = cursor.getColumnIndex(STRESSES_TABLE_STRESS_NUMBER_COLUMN_NAME);
+            final int RIGHT_OPTION_COLUMN_INDEX = cursor.getColumnIndex(STRESSES_TABLE_RIGHT_OPTION_COLUMN_NAME);
+            final int OPTION1_COLUMN_INDEX = cursor.getColumnIndex(STRESSES_TABLE_OPTION1_COLUMN_NAME);
+            final int OPTION2_COLUMN_INDEX = cursor.getColumnIndex(STRESSES_TABLE_OPTION2_COLUMN_NAME);
+            final int OPTION3_COLUMN_INDEX = cursor.getColumnIndex(STRESSES_TABLE_OPTION3_COLUMN_NAME);
+            final int OPTION4_COLUMN_INDEX = cursor.getColumnIndex(STRESSES_TABLE_OPTION4_COLUMN_NAME);
+            final int OPTION5_COLUMN_INDEX = cursor.getColumnIndex(STRESSES_TABLE_OPTION5_COLUMN_NAME);
 
             do {
-                final String word = cursor.getString(WORD_COLUMN_INDEX);
-                final int stressNumber = cursor.getInt(STRESS_NUMBER_COLUMN_INDEX);
+                ArrayList<String> answerOptions = new ArrayList<>();
+                answerOptions.add(cursor.getString(RIGHT_OPTION_COLUMN_INDEX));
 
-                wordStresses.add(new WordStress(word, stressNumber));
+                if (!cursor.isNull(OPTION1_COLUMN_INDEX))
+                    answerOptions.add(cursor.getString(OPTION1_COLUMN_INDEX));
+                if (!cursor.isNull(OPTION2_COLUMN_INDEX))
+                    answerOptions.add(cursor.getString(OPTION2_COLUMN_INDEX));
+                if (!cursor.isNull(OPTION3_COLUMN_INDEX))
+                    answerOptions.add(cursor.getString(OPTION3_COLUMN_INDEX));
+                if (!cursor.isNull(OPTION4_COLUMN_INDEX))
+                    answerOptions.add(cursor.getString(OPTION4_COLUMN_INDEX));
+                if (!cursor.isNull(OPTION5_COLUMN_INDEX))
+                    answerOptions.add(cursor.getString(OPTION5_COLUMN_INDEX));
 
+                stressesData.add(new QuizTaskData(cursor.getString(OPTION1_COLUMN_INDEX).toLowerCase(), answerOptions));
             } while (cursor.moveToNext());
-        } else {
+        }
+        else {
             final Error error = new Error("stresses table is empty");
             error.printStackTrace();
             Log.e(LogTag.ERROR.toString(), "stresses table is empty", error);
         }
 
         cursor.close();
-        return wordStresses;
+        return stressesData;
     }
 }

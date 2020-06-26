@@ -1,4 +1,4 @@
-package com.iskandev.examrus;
+package com.iskandev.examrus.quiz;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -12,15 +12,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.ankushgrover.hourglass.Hourglass;
+import com.iskandev.examrus.LogTag;
+import com.iskandev.examrus.R;
 
 import java.util.Locale;
 
-public abstract class ExamActivityTemplate extends AppCompatActivity {
+public abstract class QuizActivityTemplate extends AppCompatActivity {
 
     private final static long SHOWING_TIME = 1000;
     private final static long SHOWING_INTERVAL = 500;
 
-    private ExitExamDialogFragment exitExamDialogFragment;
+    private ExitQuizDialogFragment exitQuizDialogFragment;
     private Hourglass countDownTimer;
 
     protected TextView remainingTasksCounterText;
@@ -29,13 +31,15 @@ public abstract class ExamActivityTemplate extends AppCompatActivity {
 
     Toolbar toolbar;
 
+    protected abstract void setActivityLayout();
+
     protected abstract void startQuiz();
 
     protected abstract void finishQuiz();
 
     protected abstract void displayNextTaskData();
 
-    protected abstract void setActivityLayout();
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,7 +54,6 @@ public abstract class ExamActivityTemplate extends AppCompatActivity {
             public void onTimerTick(final long timeRemaining) {
                 countDownText.setText(String.format(Locale.getDefault(), "%d", (timeRemaining / SHOWING_INTERVAL + 1)));
             }
-
             @Override
             public void onTimerFinish() {
                 loadViewElements();
@@ -59,7 +62,7 @@ public abstract class ExamActivityTemplate extends AppCompatActivity {
         };
         countDownTimer.startTimer();
 
-        exitExamDialogFragment = new ExitExamDialogFragment();
+        exitQuizDialogFragment = new ExitQuizDialogFragment();
     }
 
     @Override
@@ -83,7 +86,7 @@ public abstract class ExamActivityTemplate extends AppCompatActivity {
         if (countDownTimer != null && countDownTimer.isRunning()) // timer is running even it is paused. It's not running only if it is finished
             super.onBackPressed();
         else
-            exitExamDialogFragment.show(getSupportFragmentManager(), "exitDialog");
+            exitQuizDialogFragment.show(getSupportFragmentManager(), "exitDialog");
     }
 
     @Override
@@ -131,6 +134,7 @@ public abstract class ExamActivityTemplate extends AppCompatActivity {
 
     protected void loadViewElements() {
         setActivityLayout();
+
         toolbar = findViewById(R.id.toolbar_activity_exam);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {

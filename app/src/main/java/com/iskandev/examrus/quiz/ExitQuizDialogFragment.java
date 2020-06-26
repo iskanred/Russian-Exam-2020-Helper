@@ -1,4 +1,4 @@
-package com.iskandev.examrus;
+package com.iskandev.examrus.quiz;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -8,7 +8,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
-public final class ExitExamDialogFragment extends DialogFragment {
+import com.iskandev.examrus.R;
+
+public final class ExitQuizDialogFragment extends DialogFragment {
 
     private AlertDialog dialog;
 

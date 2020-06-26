@@ -7,7 +7,8 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.iskandev.examrus.stresses.StressesActivity;
+import com.iskandev.examrus.quiz.ParonymsActivity;
+import com.iskandev.examrus.quiz.StressesActivity;
 
 
 public class MainActivity extends AppCompatActivity {

@@ -1,4 +1,4 @@
-package com.iskandev.examrus.stresses;
+package com.iskandev.examrus.quiz;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -6,10 +6,7 @@ import android.util.Log;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-
-import com.iskandev.examrus.ExamActivityTemplate;
 import com.iskandev.examrus.LogTag;
 import com.iskandev.examrus.R;
 
@@ -17,11 +14,11 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-public class StressesActivity extends ExamActivityTemplate {
+public class StressesActivity extends QuizActivityTemplate {
 
-    private final static long SHOWING_TIME = 1000; // time to show user correct answer
+    private final static long FREEZING_TIME = 1000; // time to show user correct answer
 
-    private StressesDataProvider stressesDataProvider;
+    private QuizDataProvider quizDataProvider;
     private FreezeTask freezeTask;
     private boolean isOptionCardSelected;
 
@@ -33,7 +30,7 @@ public class StressesActivity extends ExamActivityTemplate {
         super.onCreate(savedInstanceState);
 
         isOptionCardSelected = false;
-        stressesDataProvider = new StressesDataProvider(getApplicationContext());
+        quizDataProvider = new QuizDataProvider(getApplicationContext());
         Log.i(LogTag.INFO.toString(), "Data performed");
     }
 
@@ -53,7 +50,7 @@ public class StressesActivity extends ExamActivityTemplate {
         @Override
         protected Void doInBackground(Void... voids) {
             try {
-                TimeUnit.MILLISECONDS.sleep(SHOWING_TIME);
+                TimeUnit.MILLISECONDS.sleep(FREEZING_TIME);
             } catch (InterruptedException ie) {
                 Log.e(LogTag.ERROR.toString(), "Interrupted Exception of TimeUnit in FreezeTask");
                 ie.printStackTrace();
@@ -92,17 +89,16 @@ public class StressesActivity extends ExamActivityTemplate {
         startNextTask();
     }
 
-    @Override // FIXME: 6/11/2020
+    @Override
     protected void finishQuiz() {
-        Toast.makeText(getApplicationContext(), "СЕССИЯ ПОВТОРЕНИЯ ВЫПОЛНЕНА!", Toast.LENGTH_LONG).show();
-        finish();
+
     }
 
     @Override
     protected void startNextTask() {
         setOptionsButtonsDefaultState();
         try {
-            stressesDataProvider.performNextTaskData();
+            quizDataProvider.performNextTaskData();
         } catch (IndexOutOfBoundsException e) {
             finishQuiz();
         }
@@ -111,13 +107,13 @@ public class StressesActivity extends ExamActivityTemplate {
 
     @Override
     protected void displayNextTaskData() {
-        quizWordText.setText(stressesDataProvider.getQuizWord());
-        fillAnswerOptions(stressesDataProvider.getWordOptions());
+        quizWordText.setText(quizDataProvider.getQuizWord());
+        fillAnswerOptions(quizDataProvider.getAnswerOptions());
     }
 
     @Override
     protected void finishCurrentTask(final int selectedOptionIndex) {
-        if (selectedOptionIndex == stressesDataProvider.getCorrectOptionIndex())
+        if (selectedOptionIndex == quizDataProvider.getCorrectOptionIndex())
             displaySuccess(selectedOptionIndex);
         else
             displayFailure(selectedOptionIndex);
@@ -134,7 +130,7 @@ public class StressesActivity extends ExamActivityTemplate {
     @Override
     protected void displayFailure(final int selectedOptionIndex) {
         answerOptionsCards[selectedOptionIndex].setBackground(getResources().getDrawable(R.drawable.button_red_state, getTheme()));
-        answerOptionsCards[stressesDataProvider.getCorrectOptionIndex()].setBackground(getResources().getDrawable(R.drawable.button_green_state, getTheme()));
+        answerOptionsCards[quizDataProvider.getCorrectOptionIndex()].setBackground(getResources().getDrawable(R.drawable.button_green_state, getTheme()));
         super.displayFailure(selectedOptionIndex);
     }
 
@@ -178,7 +174,7 @@ public class StressesActivity extends ExamActivityTemplate {
         super.loadViewElements();
         quizWordText = findViewById(R.id.quiz_word);
 
-        super.remainingTasksCounterText.setText(String.format(Locale.getDefault(), "%d", stressesDataProvider.getWordStressesCount()));
+        super.remainingTasksCounterText.setText(String.format(Locale.getDefault(), "%d", quizDataProvider.getTasksCount()));
 
         answerOptionsCards = new Button[]{
                 findViewById(R.id.answer_options_buttons_table).findViewById(R.id.answer_option1_button),
