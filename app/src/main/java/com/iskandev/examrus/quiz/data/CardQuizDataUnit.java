@@ -1,32 +1,33 @@
-package com.iskandev.examrus.quiz;
+package com.iskandev.examrus.quiz.data;
 
 import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-class QuizTaskData {
-
-    private String quizWord;
-
-    private int correctOptionIndex;
+public final class CardQuizDataUnit extends QuizDataUnit {
 
     /**
      * {@code answerOptions} options of answer. Will be shuffled.
      */
     private ArrayList<String> answerOptions;
 
+    /**
+     * {@code answerOptions} index of correct answer option in {@code answerOptions}.
+     */
+    private int correctOptionIndex;
+
 
     /**
      *
      * @param quizWord is question text
-     * @param answerOptions options of answer. Right answer must be the zero-element in {@code answerOptions}
+     * @param answerOptions options of answer. Correct answer must be the zero-element in {@code answerOptions}
      */
-    QuizTaskData(@NonNull final String quizWord, @NonNull final ArrayList<String> answerOptions) {
+    CardQuizDataUnit(@NonNull final String quizWord, @NonNull final ArrayList<String> answerOptions) {
         if (answerOptions.isEmpty() || quizWord.isEmpty())
             throw new IllegalArgumentException("Empty answer options or quiz word");
 
-        this.quizWord = quizWord;
+        super.quizWord = quizWord;
         this.answerOptions = new ArrayList<>(answerOptions);
         shuffleAnswerOptions();
     }
@@ -38,16 +39,11 @@ class QuizTaskData {
     }
 
     @NonNull
-    String getQuizWord() {
-        return quizWord;
-    }
-
-    @NonNull
-    ArrayList<String> getAnswerOptions() {
+    public ArrayList<String> getAnswerOptions() {
         return answerOptions;
     }
 
-    int getCorrectOptionIndex() {
+    public int getCorrectOptionIndex() {
         return correctOptionIndex;
     }
 }

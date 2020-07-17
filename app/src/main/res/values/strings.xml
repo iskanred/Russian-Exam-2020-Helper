@@ -2,8 +2,14 @@
     <string name="app_name">Русский ЕГЭ</string>
     <string name="paromyms_name">Паронимы</string>
     <string name="stresses_name">Ударения</string>
-    <string name="exit_exam">Вы уверены, что хотите выйти?</string>
+    <string name="exit_quiz">Вы уверены, что хотите выйти?</string>
     <string name="exit">Выйти</string>
     <string name="cancel">Отмена</string>
     <string name="zero">0</string>
+    <string name="choosing_paronyms_quiz_type">Выберите режим повторения</string>
+    <string name="paronyms_card_quiz">Соотнести значение</string>
+    <string name="paronyms_input_quiz">Подобрать паронимы</string>
+    <string name="not_know_answer">НЕ ЗНАЮ</string>
+    <string name="paronyms_input_field_hint">введите пароним</string>
+    <string name="skip">пропустить</string>
 </resources>

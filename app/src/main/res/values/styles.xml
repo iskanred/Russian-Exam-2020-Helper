@@ -2,23 +2,21 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
-
     </style>
 
 
     <!-- Text Appearance -->
-    <style name="TextAppearance" parent="TextAppearance.AppCompat">
+    <style name="TextAppearanceDefault" parent="TextAppearance.AppCompat">
         <item name="android:gravity">center</item>
-        <item name="android:textSize">54sp</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:fontFamily">@font/oswald</item>
     </style>
 
-    <style name="CountDownText" parent="TextAppearance">
+    <style name="CountDownText" parent="TextAppearanceDefault">
         <item name="android:textSize">108sp</item>
     </style>
 
-    <style name="ScoreText" parent="TextAppearance">
+    <style name="ScoreText" parent="TextAppearanceDefault">
         <item name="android:textSize">20sp</item>
         <item name="android:fontFamily">@font/roboto_slab</item>
         <item name="android:layout_marginStart">15dp</item>
@@ -29,17 +27,56 @@
         <item name="android:textSize">24sp</item>
         <item name="android:fontFamily">@font/oswald</item>
     </style>
+
+    <style name="InputQuizText" parent="Widget.AppCompat.EditText">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:fontFamily">@font/oswald</item>
+        <item name="android:inputType">textNoSuggestions</item>
+        <item name="android:longClickable">false</item>
+        <item name="android:hint">@string/paronyms_input_field_hint</item>
+        <item name="android:textCursorDrawable">@android:color/white</item>
+        <item name="android:backgroundTint">@android:color/transparent</item>
+        <item name="android:layout_marginStart">3dp</item>
+        <item name="android:layout_marginEnd">3dp</item>
+        <item name="android:digits">абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ</item>
+    </style>
     <!--_________________-->
 
 
     <!-- Buttons -->
-    <style name="ButtonChoosingExam" parent="TextAppearance">
+
+    <style name="ButtonDefaultStyle" parent="Widget.AppCompat.Button">
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:fontFamily">@font/oswald</item>
+    </style>
+
+    <style name="ButtonChoosingQuizTopic" parent="ButtonDefaultStyle">
+        <item name="android:textSize">54sp</item>
         <item name="android:background">@drawable/button_default_state</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:textAllCaps">true</item>
     </style>
 
-    <style name="AnswerOptionButton" parent="TextAppearance">
+    <style name="ButtonChoosingParonymsQuizType" parent="ButtonChoosingQuizTopic">
+        <item name="android:textSize">40sp</item>
+        <item name="android:paddingStart">5dp</item>
+        <item name="android:paddingEnd">5dp</item>
+    </style>
+
+    <style name="SkipButton" parent="ButtonChoosingQuizTopic">
+        <item name="android:textSize">16sp</item>
+        <item name="android:text">@string/not_know_answer</item>
+        <item name="android:layout_marginStart">40dp</item>
+        <item name="android:layout_marginEnd">40dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">25dp</item>
+    </style>
+
+    <style name="AnswerOptionCardButton" parent="ButtonDefaultStyle">
         <item name="android:background">@drawable/button_default_state</item>
         <item name="android:textSize">24sp</item>
         <item name="android:gravity">center</item>
@@ -48,5 +85,13 @@
         <item name="android:paddingEnd">3dp</item>
     </style>
     <!--_________-->
+
+    <!-- Other -->
+    <style name="MyCardView" parent="CardView.Dark">
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:layout_marginEnd">10dp</item>
+    </style>
+    <!--_________-->
+
 
 </resources>

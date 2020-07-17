@@ -12,26 +12,16 @@ import com.iskandev.examrus.R;
 
 public final class ExitQuizDialogFragment extends DialogFragment {
 
-    private AlertDialog dialog;
-
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
         builder
-                .setMessage(R.string.exit_exam)
+                .setMessage(R.string.exit_quiz)
                 .setPositiveButton(R.string.exit, ((dialog, which) -> requireActivity().finish()))
                 .setNegativeButton(R.string.cancel, ((dialog, which) -> dismiss()));
 
-        dialog = builder.create();
-
-        return dialog;
-    }
-
-    boolean isDialogShowing() {
-        if (dialog != null)
-            return dialog.isShowing();
-        return false;
+        return builder.create();
     }
 }

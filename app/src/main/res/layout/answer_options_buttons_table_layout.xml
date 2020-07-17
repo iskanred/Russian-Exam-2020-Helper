@@ -3,14 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:columnCount="2"
-    tools:context=".quiz.StressesActivity">
+    android:columnCount="2">
 
     <Button
         android:id="@+id/answer_option1_button"
+        android:onClick="onOptionCardClick"
         android:layout_height="0dp"
         android:layout_width="0dp"
-        style="@style/AnswerOptionButton"
+        style="@style/AnswerOptionCardButton"
         android:layout_columnWeight="1"
         android:layout_rowWeight="1"
         android:layout_marginStart="16dp"
@@ -21,9 +21,10 @@
 
     <Button
         android:id="@+id/answer_option2_button"
+        android:onClick="onOptionCardClick"
         android:layout_height="0dp"
         android:layout_width="0dp"
-        style="@style/AnswerOptionButton"
+        style="@style/AnswerOptionCardButton"
         android:layout_columnWeight="1"
         android:layout_rowWeight="1"
         android:layout_marginStart="5dp"
@@ -34,9 +35,10 @@
 
     <Button
         android:id="@+id/answer_option3_button"
+        android:onClick="onOptionCardClick"
         android:layout_height="0dp"
         android:layout_width="0dp"
-        style="@style/AnswerOptionButton"
+        style="@style/AnswerOptionCardButton"
         android:layout_columnWeight="1"
         android:layout_rowWeight="1"
         android:layout_marginStart="16dp"
@@ -47,9 +49,10 @@
 
     <Button
         android:id="@+id/answer_option4_button"
+        android:onClick="onOptionCardClick"
         android:layout_height="0dp"
         android:layout_width="0dp"
-        style="@style/AnswerOptionButton"
+        style="@style/AnswerOptionCardButton"
         android:layout_columnWeight="1"
         android:layout_rowWeight="1"
         android:layout_marginStart="5dp"
@@ -60,9 +63,10 @@
 
     <Button
         android:id="@+id/answer_option5_button"
+        android:onClick="onOptionCardClick"
         android:layout_height="0dp"
         android:layout_width="0dp"
-        style="@style/AnswerOptionButton"
+        style="@style/AnswerOptionCardButton"
         android:layout_columnWeight="1"
         android:layout_rowWeight="1"
         android:layout_marginStart="16dp"
@@ -73,9 +77,10 @@
 
     <Button
         android:id="@+id/answer_option6_button"
+        android:onClick="onOptionCardClick"
         android:layout_height="0dp"
         android:layout_width="0dp"
-        style="@style/AnswerOptionButton"
+        style="@style/AnswerOptionCardButton"
         android:layout_columnWeight="1"
         android:layout_rowWeight="1"
         android:layout_marginStart="5dp"
